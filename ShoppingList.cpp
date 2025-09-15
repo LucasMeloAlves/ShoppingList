@@ -27,6 +27,13 @@ const std::list<Item>& ShoppingList::getItems() const {
     return items;
 }
 
+void ShoppingList::printItems() const {
+    std::cout << "Shopping List: " << name << std::endl;
+    for (const auto& item : items) {
+        item.print();
+    }
+}
+
 // ------------------ Observer Pattern ------------------
 void ShoppingList::addObserver(Observer* obs) {
     observers.push_back(obs);

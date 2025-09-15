@@ -25,7 +25,7 @@ public:
     void addItem(const Item& item);
     void removeItem(const std::string& itemName);
     const std::list<Item>& getItems() const;
-
+    void printItems() const;
     // gestione Observer
     void addObserver(Observer* obs) override;
     void removeObserver(Observer* obs) override;

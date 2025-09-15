@@ -13,4 +13,6 @@ add_executable(ShoppingList main.cpp
         User.cpp
         User.h
         Item.cpp
-        Item.h)
+        Item.h
+        UserManager.cpp
+        UserManager.h)

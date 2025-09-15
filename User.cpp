@@ -5,8 +5,8 @@
 // User.cpp
 
 #include "User.h"
+#include <iostream>
 
-//costruttore
 User::User(const std::string& name, std::string& username, std::string& email, int id)
     : name(name), username(username), email(email), id(id) {}
 
@@ -20,6 +20,13 @@ int User::getId() const {
 
 void User::setName(const std::string& newName) {
     name = newName;
+}
+void User::printShoppingLists() const
+{
+    std::cout << "Shopping Lists for User: " << name << std::endl;
+    for (const auto& list : shoppingLists) {
+        std::cout << "- " << list->getName() << std::endl;
+    }
 }
 
 void User::addShoppingList(ShoppingList* list) {

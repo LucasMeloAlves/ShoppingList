@@ -24,6 +24,7 @@ public:
     //aggiugni lista e rimuovi lista
     void addShoppingList(ShoppingList* list);
     void removeShoppingList(ShoppingList* list);
+    void printShoppingLists() const;
 
     void setName(const std::string& newName);
     void setEmail(const std::string& newEmail);
