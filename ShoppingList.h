@@ -6,16 +6,17 @@
 #define SHOPPINGLIST_SHOPPINGLIST_H
 
 
+// ShoppingList.h
 #include <string>
-#include <vector>
+#include <list>
 #include "Item.h"
 #include "Subject.h"
 
 class ShoppingList : public Subject {
 private:
     std::string name;
-    std::vector<Item> items;
-    std::vector<Observer*> observers;
+    std::list<Item> items;
+    std::list<Observer*> observers;
 
 public:
     ShoppingList(const std::string& n);
@@ -23,7 +24,7 @@ public:
     std::string getName() const;
     void addItem(const Item& item);
     void removeItem(const std::string& itemName);
-    const std::vector<Item>& getItems() const;
+    const std::list<Item>& getItems() const;
 
     // gestione Observer
     void addObserver(Observer* obs) override;
@@ -31,7 +32,5 @@ public:
     void notify() override;
     ~ShoppingList() override = default;
 };
-
-
 
 #endif //SHOPPINGLIST_SHOPPINGLIST_H

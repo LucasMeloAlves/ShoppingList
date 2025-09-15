@@ -3,9 +3,7 @@
 //
 
 #include "ShoppingList.h"
-#include "ShoppingList.h"
 #include <iostream>
-#include <algorithm>
 
 // Costruttore
 ShoppingList::ShoppingList(const std::string& n) : name(n) {}
@@ -15,23 +13,17 @@ std::string ShoppingList::getName() const { return name; }
 // ------------------ Gestione Item ------------------
 void ShoppingList::addItem(const Item& item) {
     items.push_back(item);
-    notify();  // avviso gli osservatori
+    notify();
 }
 
 void ShoppingList::removeItem(const std::string& itemName) {
-    items.erase(
-        std::remove_if(items.begin(), items.end(),
-            [&itemName](const Item& item) {
-                return item.getName() == itemName;
-            }),
-        items.end()
-    );
-    notify(); // avviso gli osservatori
+    items.remove_if([&itemName](const Item& item) {
+        return item.getName() == itemName;
+    });
+    notify();
 }
 
-
-
-const std::vector<Item>& ShoppingList::getItems() const {
+const std::list<Item>& ShoppingList::getItems() const {
     return items;
 }
 
@@ -41,7 +33,7 @@ void ShoppingList::addObserver(Observer* obs) {
 }
 
 void ShoppingList::removeObserver(Observer* obs) {
-    observers.erase(std::remove(observers.begin(), observers.end(), obs), observers.end());
+    observers.remove(obs);
 }
 
 void ShoppingList::notify() {
