@@ -4,6 +4,7 @@
 
 #include "ShoppingList.h"
 #include <iostream>
+#include <algorithm>
 
 // Costruttore
 ShoppingList::ShoppingList(const std::string& n) : name(n) {}
@@ -17,13 +18,17 @@ void ShoppingList::addItem(const Item& item) {
 }
 
 void ShoppingList::removeItem(const std::string& itemName) {
-    items.remove_if([&itemName](const Item& item) {
-        return item.getName() == itemName;
-    });
+    items.erase(
+        std::remove_if(items.begin(), items.end(),
+            [&itemName](const Item& item) {
+                return item.getName() == itemName;
+            }),
+        items.end()
+    );
     notify();
 }
 
-const std::list<Item>& ShoppingList::getItems() const {
+const std::vector<Item>& ShoppingList::getItems() const {
     return items;
 }
 

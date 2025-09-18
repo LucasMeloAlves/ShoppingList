@@ -8,14 +8,15 @@
 
 // ShoppingList.h
 #include <string>
-#include <list>
+#include <vector>
+#include "Observer.h"
 #include "Item.h"
 #include "Subject.h"
 
 class ShoppingList : public Subject {
 private:
     std::string name;
-    std::list<Item> items;
+    std::vector<Item> items;
     std::list<Observer*> observers;
 
 public:
@@ -24,7 +25,7 @@ public:
     std::string getName() const;
     void addItem(const Item& item);
     void removeItem(const std::string& itemName);
-    const std::list<Item>& getItems() const;
+    const std::vector<Item>& getItems() const;
     void printItems() const;
     // gestione Observer
     void addObserver(Observer* obs) override;

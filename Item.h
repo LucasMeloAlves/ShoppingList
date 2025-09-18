@@ -12,13 +12,12 @@ class Item {
 private:
     std::string name;
     Category* category;   // puntatore alla categoria
-    float price;       // prezzo dell'articolo
     int quantity;
     bool purchased;
 
 public:
     // Costruttore
-    Item(const std::string& name, Category* category, int quantity = 1, bool purchased = false, float price=0.0f);
+    Item(const std::string& name, Category* category, int quantity = 1, bool purchased = false);
 
     // Getter
     std::string getName() const;

@@ -14,9 +14,11 @@ private:
     std::string username;
     std::string email;
     int id;
-    std::list<ShoppingList*> shoppingLists; // lista di liste della spesa
+    std::vector<ShoppingList*> shoppingLists; // vettore di liste della spesa
 public:
-    User(const std::string& name,std::string& username, std::string& email, int id);
+
+    User(const std::string& name, const std::string& username, const std::string& email, int id);
+
     std::string getName() const;
     std::string getEmail() const;
     int getId() const;
@@ -25,6 +27,8 @@ public:
     void addShoppingList(ShoppingList* list);
     void removeShoppingList(ShoppingList* list);
     void printShoppingLists() const;
+    const std::vector<ShoppingList*>& getShoppingLists() const;
+
 
     void setName(const std::string& newName);
     void setEmail(const std::string& newEmail);
