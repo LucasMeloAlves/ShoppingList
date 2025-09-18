@@ -32,7 +32,6 @@ public:
 
     void setName(const std::string& newName);
     void setEmail(const std::string& newEmail);
-    void setItemPurchased(std::shared_ptr<ShoppingList> lista, const std::string& nomeItem, bool p);
 
 
     // implementazione dell'Observer

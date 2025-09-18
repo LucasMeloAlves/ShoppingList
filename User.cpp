@@ -45,16 +45,6 @@ void User::removeShoppingList(std::shared_ptr<ShoppingList> list) {
     );
 }
 
-void User::setItemPurchased(std::shared_ptr<ShoppingList> lista, const std::string& nomeItem, bool stato) {
-    auto& items = lista->getItems();
-    for (auto& item : items) {
-        if (item.getName() == nomeItem) {
-            item.setPurchased(stato);
-            break;
-        }
-    }
-}
-
 
 User::~User() = default;
 void User::update(const std::string& listName) {}

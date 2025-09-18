@@ -27,6 +27,28 @@ void ShoppingList::removeItem(const std::string& itemName) {
     );
     notify();
 }
+void ShoppingList::setItemPurchased(const std::string& itemName, bool purchased)
+{
+    auto it = std::find_if(items.begin(), items.end(),
+        [&itemName](const Item& item) {
+            return item.getName() == itemName;
+        });
+    if (it != items.end()) {
+        it->setPurchased(purchased);
+        notify();
+    }
+}
+void ShoppingList::setQuantity(const std::string& itemName, int quantity)
+{
+    auto it = std::find_if(items.begin(), items.end(),
+        [&itemName](const Item& item) {
+            return item.getName() == itemName;
+        });
+    if (it != items.end()) {
+        it->setQuantity(quantity);
+        notify();
+    }
+}
 
 std::vector<Item>& ShoppingList::getItems() {
     return items;

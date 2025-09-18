@@ -25,8 +25,10 @@ public:
     std::string getName() const;
     void addItem(const Item& item);
     void removeItem(const std::string& itemName);
+    void setQuantity(const std::string& itemName, int quantity);
     std::vector<Item>& getItems();
     void printItems() const;
+    void setItemPurchased(const std::string& itemName, bool purchased);
     // gestione Observer
     void addObserver(Observer* obs) override;
     void removeObserver(Observer* obs) override;

@@ -25,11 +25,7 @@ int main() {
     utente1.addShoppingList(lista1);
     utente1.addShoppingList(lista2);
     utente2.addShoppingList(lista2);
-    //utente 1 setta un item purchased
-
-    // Vettore utenti
     std::vector<User*> utenti = {&utente1, &utente2};
-
     // Stampa utenti con indice
     std::cout << "Utenti disponibili:\n";
     for (size_t i = 0; i < utenti.size(); ++i) {
