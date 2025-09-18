@@ -14,7 +14,7 @@ private:
     std::string username;
     std::string email;
     int id;
-    std::vector<ShoppingList*> shoppingLists; // vettore di liste della spesa
+    std::vector<std::shared_ptr<ShoppingList>> shoppingLists; // vettore di liste della spesa
 public:
 
     User(const std::string& name, const std::string& username, const std::string& email, int id);
@@ -24,14 +24,16 @@ public:
     int getId() const;
 
     //aggiugni lista e rimuovi lista
-    void addShoppingList(ShoppingList* list);
-    void removeShoppingList(ShoppingList* list);
+    void addShoppingList(std::shared_ptr<ShoppingList> list);
+    void removeShoppingList(std::shared_ptr<ShoppingList> list);
     void printShoppingLists() const;
-    const std::vector<ShoppingList*>& getShoppingLists() const;
+    const std::vector<std::shared_ptr<ShoppingList>>& getShoppingLists() const;
 
 
     void setName(const std::string& newName);
     void setEmail(const std::string& newEmail);
+    void setItemPurchased(std::shared_ptr<ShoppingList> lista, const std::string& nomeItem, bool p);
+
 
     // implementazione dell'Observer
     void update(const std::string& listName) override;

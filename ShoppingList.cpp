@@ -28,7 +28,7 @@ void ShoppingList::removeItem(const std::string& itemName) {
     notify();
 }
 
-const std::vector<Item>& ShoppingList::getItems() const {
+std::vector<Item>& ShoppingList::getItems() {
     return items;
 }
 

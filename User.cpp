@@ -22,7 +22,7 @@ void User::setName(const std::string& newName) {
     name = newName;
 }
 
-const std::vector<ShoppingList*>& User::getShoppingLists() const {
+const std::vector<std::shared_ptr<ShoppingList>>& User::getShoppingLists() const {
     return shoppingLists;
 }
 
@@ -34,16 +34,28 @@ void User::printShoppingLists() const
     }
 }
 
-void User::addShoppingList(ShoppingList* list) {
+void User::addShoppingList(std::shared_ptr<ShoppingList> list) {
     shoppingLists.push_back(list);
 }
 
-void User::removeShoppingList(ShoppingList* list) {
+void User::removeShoppingList(std::shared_ptr<ShoppingList> list) {
     shoppingLists.erase(
         std::remove(shoppingLists.begin(), shoppingLists.end(), list),
         shoppingLists.end()
     );
 }
+
+void User::setItemPurchased(std::shared_ptr<ShoppingList> lista, const std::string& nomeItem, bool stato) {
+    auto& items = lista->getItems();
+    for (auto& item : items) {
+        if (item.getName() == nomeItem) {
+            item.setPurchased(stato);
+            break;
+        }
+    }
+}
+
+
 User::~User() = default;
 void User::update(const std::string& listName) {}
 

@@ -1,7 +1,3 @@
-//
-// Created by Lucas Melo Alves on 15/09/25.
-//
-
 #include "UserManager.h"
 #include <algorithm>
 #include <iostream>
@@ -9,10 +5,10 @@
 void UserManager::addUser(User* user) {
     users.push_back(user);
 }
-
 void UserManager::removeUser(User* user) {
-    users.remove(user);
+    users.erase(std::remove(users.begin(), users.end(), user), users.end());
 }
+
 User* UserManager::getUserById(int id) const {
     auto it = std::find_if(users.begin(), users.end(), [id](User* user) {
         return user->getId() == id;

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <memory>
 #include "User.h"
 #include "ShoppingList.h"
 #include "Item.h"
@@ -12,17 +13,19 @@ int main() {
     Category categoria1("Generi Alimentari");
     Category categoria2("Elettronica");
     // Creazione liste
-    ShoppingList lista1("Spesa Settimanale");
-    lista1.addItem(Item("Pane", &categoria1, 2));
-    lista1.addItem(Item("Latte", &categoria2, 4));
+    auto lista1 = std::make_shared<ShoppingList>("Spesa Settimanale");
+    lista1->addItem(Item("Pane", &categoria1, 2));
+    lista1->addItem(Item("Latte", &categoria2, 4));
 
-    ShoppingList lista2("Spesa Mensile");
-    lista2.addItem(Item("Pasta", &categoria1, 1));
-    lista2.addItem(Item("Riso", &categoria2, 55));
-
+    auto lista2 = std::make_shared<ShoppingList>("Spesa Mensile");
+    lista2->addItem(Item("Pasta", &categoria1, 1));
+    lista2->addItem(Item("Riso", &categoria2, 55));
     // Assegna liste agli utenti
-    utente1.addShoppingList(&lista1);
-    utente2.addShoppingList(&lista2);
+
+    utente1.addShoppingList(lista1);
+    utente1.addShoppingList(lista2);
+    utente2.addShoppingList(lista2);
+    //utente 1 setta un item purchased
 
     // Vettore utenti
     std::vector<User*> utenti = {&utente1, &utente2};
@@ -51,7 +54,7 @@ int main() {
         std::cin >> indiceLista;
 
         if (indiceLista < liste.size()) {
-            ShoppingList* listaSelezionata = liste[indiceLista];
+            std::shared_ptr<ShoppingList> listaSelezionata = liste[indiceLista];
             std::cout << "Item nella lista " << listaSelezionata->getName() << ":\n";
             listaSelezionata->printItems();
         } else {

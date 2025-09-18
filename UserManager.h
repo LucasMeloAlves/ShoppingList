@@ -5,12 +5,12 @@
 #ifndef SHOPPINGLIST_USERMANAGER_H
 #define SHOPPINGLIST_USERMANAGER_H
 #include "User.h"
-#include <list>
+#include <vector>
 
 class UserManager
 {
 private:
-    std::list<User*> users;
+    std::vector<User*> users;
 public:
     void addUser(User* user);
     void removeUser(User* user);
