@@ -15,4 +15,9 @@ add_executable(ShoppingList main.cpp
         Item.cpp
         Item.h
         UserManager.cpp
-        UserManager.h)
+        UserManager.h
+        test/runAllTests.cpp
+        test/userTest.cpp
+        test/itemTest.cpp
+        test/shoppingListTest.cpp
+)
