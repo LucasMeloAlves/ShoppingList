@@ -31,7 +31,7 @@ public:
     void setName(const std::string& n);
     void setCategory(Category* c);
 
-    // Utility
+
     void print() const;
 };
 

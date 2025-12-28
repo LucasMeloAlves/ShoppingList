@@ -12,10 +12,12 @@ class UserManager
 private:
     std::vector<User*> users;
 public:
+    // gestione utenti
     void addUser(User* user);
     void removeUser(User* user);
-    User* getUserById(int id) const;
     void printUsers() const;
+    // ricerca utente per id
+    User* getUserById(int id) const;
 };
 
 

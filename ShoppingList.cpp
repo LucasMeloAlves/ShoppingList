@@ -11,7 +11,7 @@ ShoppingList::ShoppingList(const std::string& name) : name(name) {}
 
 std::string ShoppingList::getName() const { return name; }
 
-// ------------------ Gestione Item ------------------
+// Operazioni sugli item
 void ShoppingList::addItem(const Item& item) {
     items.push_back(item);
     notify();
@@ -31,6 +31,13 @@ void ShoppingList:: clear() {
     notify();
 }
 
+void ShoppingList::printItems() const {
+    std::cout << "Shopping List: " << name << std::endl;
+    for (const auto& item : items) {
+        item.print();
+    }
+}
+// Setters
 void ShoppingList::setItemPurchased(const int index, bool purchased){
     items[index].setPurchased(purchased);
     notify();
@@ -46,7 +53,7 @@ void ShoppingList::setQuantity(const std::string& itemName, int quantity)
         notify();
     }
 }
-
+// Getters
 Item ShoppingList::getItem(int index)
 {
     // controllo per indice fuori dai limiti
@@ -60,19 +67,12 @@ size_t ShoppingList::getSize() const {
     return items.size();
 }
 
-void ShoppingList::printItems() const {
-    std::cout << "Shopping List: " << name << std::endl;
-    for (const auto& item : items) {
-        item.print();
-    }
-}
-
 size_t ShoppingList::getPurchasedCount() const{
     return std::count_if(items.begin(), items.end(),
                          [](const Item& item) { return item.isPurchased(); });
 }
 
-// ------------------ Observer Pattern ------------------
+// Implementazione observer
 void ShoppingList::addObserver(Observer* obs) {
     observers.push_back(obs);
 }

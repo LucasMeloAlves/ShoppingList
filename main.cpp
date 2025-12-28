@@ -9,7 +9,7 @@ int main() {
     // Creazione utenti
     User utente1("Alice", "alice123", "alice@email.com", 1);
     User utente2("Bob", "bob456", "bob@email.com", 2);
-    //creaziione categorie
+    //creazione categorie
     Category categoria1("Generi Alimentari");
     Category categoria2("Elettronica");
     // Creazione liste
@@ -37,9 +37,10 @@ int main() {
     std::cin >> indiceUtente;
 
     if (indiceUtente < utenti.size()) {
+        //prendo il vettore che contiene tutte le liste di uno specifico utente
         User* utenteSelezionato = utenti[indiceUtente];
         const auto& liste = utenteSelezionato->getShoppingLists();
-
+        // Stampa liste con indice
         std::cout << "Liste disponibili per " << utenteSelezionato->getName() << ":\n";
         for (size_t j = 0; j < liste.size(); ++j) {
             std::cout << j << ") " << liste[j]->getName() << "\n";
@@ -48,7 +49,7 @@ int main() {
         std::cout << "Seleziona l'indice lista: ";
         size_t indiceLista;
         std::cin >> indiceLista;
-
+        // Stampa items della lista selezionata
         if (indiceLista < liste.size()) {
             std::shared_ptr<ShoppingList> listaSelezionata = liste[indiceLista];
             std::cout << "Item nella lista " << listaSelezionata->getName() << ":\n";

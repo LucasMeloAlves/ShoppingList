@@ -10,6 +10,7 @@
 User::User(const std::string& name, const std::string& username, const std::string& email, int id)
     : name(name), username(username), email(email), id(id) {}
 
+// getters
 std::string User::getName() const {
     return name;
 }
@@ -21,14 +22,11 @@ int User::getId() const {
     return id;
 }
 
-void User::setName(const std::string& newName) {
-    name = newName;
-}
-
 const std::vector<std::shared_ptr<ShoppingList>>& User::getShoppingLists() const {
     return shoppingLists;
 }
 
+// operazioni sulla lista
 void User::printShoppingLists() const
 {
     std::cout << "Shopping Lists for User: " << name << std::endl;
@@ -50,7 +48,14 @@ void User::removeShoppingList(std::shared_ptr<ShoppingList> list) {
     );
 }
 
-
+// setters
+void User::setName(const std::string& newName) {
+    name = newName;
+}
+void User::setEmail(const std::string& newEmail) {
+    email = newEmail;
+}
+// implementazione dell'Observer
 User::~User() = default;
 void User::update(const std::string& listName) {}
 

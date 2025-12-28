@@ -21,7 +21,7 @@ private:
 
 public:
     ShoppingList(const std::string& name = "Default List");
-
+// operazioni sugli item
     void addItem(const Item& item);
     void removeItem(const int& index);
     void printItems() const;

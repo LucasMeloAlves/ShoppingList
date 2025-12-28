@@ -8,5 +8,5 @@ set(SOURCE_FILES Item.cpp Item.h ShoppingList.cpp ShoppingList.h User.cpp User.h
 add_executable(ShoppingList ${SOURCE_FILES})
 add_library(core ${SOURCE_FILES}
         main.cpp
-        test/categoryTest.cpp)
+        )
 target_link_libraries(ShoppingList core)

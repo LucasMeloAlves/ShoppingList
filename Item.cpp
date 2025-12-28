@@ -11,12 +11,7 @@ std::string Item::getName() const { return name; }
 int Item::getQuantity() const { return quantity; }
 bool Item::isPurchased() const { return purchased; }
 Category* Item::getCategory() const { return category; }
-void Item::print() const {
-    std::cout << "- " << name
-              << " | Category: " << (category ? category->getName() : "None")
-              << " | Quantity: " << quantity
-              << " | Purchased: " << (purchased ? "Yes" : "No") << std::endl;
-}
+
 // Setter
 void Item::setQuantity(int q)
 {// Controllo per quantità negativa
@@ -28,3 +23,10 @@ void Item::setQuantity(int q)
 void Item::setPurchased(bool p) { purchased = p; }
 void Item::setName(const std::string& n) { name = n; }
 void Item::setCategory(Category* c) { category = c; }
+
+void Item::print() const {
+    std::cout << "- " << name
+              << " | Category: " << (category ? category->getName() : "None")
+              << " | Quantity: " << quantity
+              << " | Purchased: " << (purchased ? "Yes" : "No") << std::endl;
+}
