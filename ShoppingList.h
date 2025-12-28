@@ -20,15 +20,20 @@ private:
     std::list<Observer*> observers;
 
 public:
-    ShoppingList(const std::string& n);
+    ShoppingList(const std::string& name = "Default List");
 
-    std::string getName() const;
     void addItem(const Item& item);
-    void removeItem(const std::string& itemName);
-    void setQuantity(const std::string& itemName, int quantity);
-    std::vector<Item>& getItems();
+    void removeItem(const int& index);
     void printItems() const;
-    void setItemPurchased(const std::string& itemName, bool purchased);
+    void clear();
+    //getters
+    Item getItem(int index);
+    std::string getName() const;
+    size_t getSize() const;
+    size_t getPurchasedCount() const;
+    //setters
+    void setItemPurchased(Item item, bool purchased);
+    void setQuantity(const std::string& itemName, int quantity);
     // gestione Observer
     void addObserver(Observer* obs) override;
     void removeObserver(Observer* obs) override;

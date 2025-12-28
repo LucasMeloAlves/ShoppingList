@@ -7,7 +7,7 @@
 #include <algorithm>
 
 // Costruttore
-ShoppingList::ShoppingList(const std::string& n) : name(n) {}
+ShoppingList::ShoppingList(const std::string& name) : name(name) {}
 
 std::string ShoppingList::getName() const { return name; }
 
@@ -17,26 +17,21 @@ void ShoppingList::addItem(const Item& item) {
     notify();
 }
 
-void ShoppingList::removeItem(const std::string& itemName) {
-    items.erase(
-        std::remove_if(items.begin(), items.end(),
-            [&itemName](const Item& item) {
-                return item.getName() == itemName;
-            }),
-        items.end()
-    );
-    notify();
-}
-void ShoppingList::setItemPurchased(const std::string& itemName, bool purchased)
-{
-    auto it = std::find_if(items.begin(), items.end(),
-        [&itemName](const Item& item) {
-            return item.getName() == itemName;
-        });
-    if (it != items.end()) {
-        it->setPurchased(purchased);
+void ShoppingList::removeItem(const int& index) {
+    if (index >= 0 && index < items.size()) {
+        items.erase(items.begin() + index);
         notify();
     }
+}
+
+void ShoppingList:: clear() {
+    items.clear();
+    notify();
+}
+
+void ShoppingList::setItemPurchased(Item item, bool purchased){
+    item.setPurchased(purchased);
+    notify();
 }
 void ShoppingList::setQuantity(const std::string& itemName, int quantity)
 {
@@ -50,8 +45,12 @@ void ShoppingList::setQuantity(const std::string& itemName, int quantity)
     }
 }
 
-std::vector<Item>& ShoppingList::getItems() {
-    return items;
+Item ShoppingList::getItem(int index) {
+    return items[index];
+}
+
+size_t ShoppingList::getSize() const {
+    return items.size();
 }
 
 void ShoppingList::printItems() const {
@@ -59,6 +58,11 @@ void ShoppingList::printItems() const {
     for (const auto& item : items) {
         item.print();
     }
+}
+
+size_t ShoppingList::getPurchasedCount() const{
+    return std::count_if(items.begin(), items.end(),
+                         [](const Item& item) { return item.isPurchased(); });
 }
 
 // ------------------ Observer Pattern ------------------

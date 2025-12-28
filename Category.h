@@ -14,6 +14,7 @@ private:
 public:
     Category(const std::string& name);
     std::string getName() const;
+    void setName(const std::string& name);
 };
 
 #endif //SHOPPINGLIST_CATEGORY_H

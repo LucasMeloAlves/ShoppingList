@@ -13,6 +13,9 @@ User::User(const std::string& name, const std::string& username, const std::stri
 std::string User::getName() const {
     return name;
 }
+std::string User::getEmail() const {
+    return email;
+}
 
 int User::getId() const {
     return id;

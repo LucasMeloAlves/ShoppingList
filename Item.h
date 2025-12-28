@@ -24,11 +24,12 @@ public:
     int getQuantity() const;
     bool isPurchased() const;
     Category* getCategory() const;
-    float getPrice() const;
 
     // Setter
     void setQuantity(int q);
     void setPurchased(bool p);
+    void setName(const std::string& n);
+    void setCategory(Category* c);
 
     // Utility
     void print() const;

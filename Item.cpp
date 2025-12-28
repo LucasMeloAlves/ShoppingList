@@ -20,4 +20,5 @@ void Item::print() const {
 // Setter
 void Item::setQuantity(int q) { quantity = q; }
 void Item::setPurchased(bool p) { purchased = p; }
-
+void Item::setName(const std::string& n) { name = n; }
+void Item::setCategory(Category* c) { category = c; }
