@@ -19,14 +19,14 @@ public:
 
     User(const std::string& name, const std::string& username, const std::string& email, int id);
 // getters
-    std::string getName() const;
-    std::string getEmail() const;
+    const std::string& getName() const;
+    const std::string& getEmail() const;
     int getId() const;
     const std::vector<std::shared_ptr<ShoppingList>>& getShoppingLists() const;
 
     //operazioni sulla lista
-    void addShoppingList(std::shared_ptr<ShoppingList> list);
-    void removeShoppingList(std::shared_ptr<ShoppingList> list);
+    void addShoppingList(const std::shared_ptr<ShoppingList>& list);
+    void removeShoppingList(const std::shared_ptr<ShoppingList>& list);
     void printShoppingLists() const;
 
 

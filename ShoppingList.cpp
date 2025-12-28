@@ -17,8 +17,8 @@ void ShoppingList::addItem(const Item& item) {
     notify();
 }
 
-void ShoppingList::removeItem(const int& index) {
-    if (index < 0 || index > items.size()) {
+void ShoppingList::removeItem(size_t index) {
+    if (index > items.size()) {
         throw std::out_of_range("Index out of range");
     }
         items.erase(items.begin() + index);
@@ -38,7 +38,7 @@ void ShoppingList::printItems() const {
     }
 }
 // Setters
-void ShoppingList::setItemPurchased(const int index, bool purchased){
+void ShoppingList::setItemPurchased(size_t index, bool purchased){
     items[index].setPurchased(purchased);
     notify();
 }
@@ -54,13 +54,9 @@ void ShoppingList::setQuantity(const std::string& itemName, int quantity)
     }
 }
 // Getters
-Item ShoppingList::getItem(int index)
-{
-    // controllo per indice fuori dai limiti
-    if (index < 0 || index >= items.size()) {
-        throw std::out_of_range("Index out of range");
-    }
-    return items[index];
+// Versione per leggere (non modifica la lista)
+const Item& ShoppingList::getItem(size_t index) const {
+    return items.at(index);
 }
 
 size_t ShoppingList::getSize() const {

@@ -4,61 +4,73 @@
 #include "User.h"
 #include "ShoppingList.h"
 #include "Item.h"
+#include "UserManager.h" // Aggiunto
 
 int main() {
-    // Creazione utenti
-    User utente1("Alice", "alice123", "alice@email.com", 1);
-    User utente2("Bob", "bob456", "bob@email.com", 2);
-    //creazione categorie
+    UserManager userManager;
+
     Category categoria1("Generi Alimentari");
     Category categoria2("Elettronica");
-    // Creazione liste
+
+    auto alice = std::make_shared<User>("Alice", "alice123", "alice@email.com", 1);
+    auto bob = std::make_shared<User>("Bob", "bob456", "bob@email.com", 2);
+
+    //Aggiunta utenti al manager
+    userManager.addUser(alice);
+    userManager.addUser(bob);
+
+    //Creazione liste (shared_ptr) e aggiunta item
     auto lista1 = std::make_shared<ShoppingList>("Spesa Settimanale");
     lista1->addItem(Item("Pane", &categoria1, 2));
-    lista1->addItem(Item("Latte", &categoria2, 4));
+    lista1->addItem(Item("Latte", &categoria1, 4));
 
     auto lista2 = std::make_shared<ShoppingList>("Spesa Mensile");
     lista2->addItem(Item("Pasta", &categoria1, 1));
-    lista2->addItem(Item("Riso", &categoria2, 55));
-    // Assegna liste agli utenti
+    lista2->addItem(Item("Smartphone", &categoria2, 1));
 
-    utente1.addShoppingList(lista1);
-    utente1.addShoppingList(lista2);
-    utente2.addShoppingList(lista2);
-    std::vector<User*> utenti = {&utente1, &utente2};
-    // Stampa utenti con indice
-    std::cout << "Utenti disponibili:\n";
-    for (size_t i = 0; i < utenti.size(); ++i) {
-        std::cout << i << ") " << utenti[i]->getName() << "\n";
-    }
+    //Assegna liste agli utenti
+    alice->addShoppingList(lista1);
+    alice->addShoppingList(lista2);
+    bob->addShoppingList(lista2);
 
-    std::cout << "Seleziona l'indice utente: ";
-    size_t indiceUtente;
-    std::cin >> indiceUtente;
+    //Interazione con l'utente
+    std::cout << "--- Sistema Gestione Spesa ---\n";
+    userManager.printUsers(); // Usiamo il metodo del manager
 
-    if (indiceUtente < utenti.size()) {
-        //prendo il vettore che contiene tutte le liste di uno specifico utente
-        User* utenteSelezionato = utenti[indiceUtente];
+    std::cout << "\nInserisci l'ID dell'utente da visualizzare: ";
+    int idCercato;
+    std::cin >> idCercato;
+
+    // Usiamo il nuovo metodo che restituisce shared_ptr
+    std::shared_ptr<User> utenteSelezionato = userManager.getUserById(idCercato);
+
+    if (utenteSelezionato) {
+        std::cout << "\nUtente selezionato: " << utenteSelezionato->getName() << "\n";
+
         const auto& liste = utenteSelezionato->getShoppingLists();
-        // Stampa liste con indice
-        std::cout << "Liste disponibili per " << utenteSelezionato->getName() << ":\n";
-        for (size_t j = 0; j < liste.size(); ++j) {
-            std::cout << j << ") " << liste[j]->getName() << "\n";
-        }
 
-        std::cout << "Seleziona l'indice lista: ";
-        size_t indiceLista;
-        std::cin >> indiceLista;
-        // Stampa items della lista selezionata
-        if (indiceLista < liste.size()) {
-            std::shared_ptr<ShoppingList> listaSelezionata = liste[indiceLista];
-            std::cout << "Item nella lista " << listaSelezionata->getName() << ":\n";
-            listaSelezionata->printItems();
+        if (liste.empty()) {
+            std::cout << "Questo utente non ha liste.\n";
         } else {
-            std::cout << "Indice lista non valido.\n";
+            std::cout << "Liste disponibili:\n";
+            for (size_t j = 0; j < liste.size(); ++j) {
+                std::cout << j << ") " << liste[j]->getName() << "\n";
+            }
+
+            std::cout << "Seleziona l'indice della lista: ";
+            size_t indiceLista;
+            std::cin >> indiceLista;
+
+            if (indiceLista < liste.size()) {
+                auto listaSelezionata = liste[indiceLista];
+                std::cout << "\nContenuto di '" << listaSelezionata->getName() << "':\n";
+                listaSelezionata->printItems();
+            } else {
+                std::cout << "Indice lista non valido.\n";
+            }
         }
     } else {
-        std::cout << "Indice utente non valido.\n";
+        std::cout << "Utente con ID " << idCercato << " non trovato.\n";
     }
 
     return 0;

@@ -11,10 +11,10 @@ User::User(const std::string& name, const std::string& username, const std::stri
     : name(name), username(username), email(email), id(id) {}
 
 // getters
-std::string User::getName() const {
+const std::string& User::getName() const {
     return name;
 }
-std::string User::getEmail() const {
+const std::string& User::getEmail() const {
     return email;
 }
 
@@ -35,12 +35,12 @@ void User::printShoppingLists() const
     }
 }
 
-void User::addShoppingList(std::shared_ptr<ShoppingList> list) {
+void User::addShoppingList(const std::shared_ptr<ShoppingList>& list) {
     if (!list) return;
     shoppingLists.push_back(list);
 }
 
-void User::removeShoppingList(std::shared_ptr<ShoppingList> list) {
+void User::removeShoppingList(const std::shared_ptr<ShoppingList>& list) {
     if (!list) return;
     shoppingLists.erase(
         std::remove(shoppingLists.begin(), shoppingLists.end(), list),

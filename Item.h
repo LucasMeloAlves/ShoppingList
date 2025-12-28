@@ -20,10 +20,10 @@ public:
     Item(const std::string& name, Category* category, int quantity = 1, bool purchased = false);
 
     // Getter
-    std::string getName() const;
+    const std::string& getName() const;
     int getQuantity() const;
     bool isPurchased() const;
-    Category* getCategory() const;
+    const Category* getCategory() const;
 
     // Setter
     void setQuantity(int q);

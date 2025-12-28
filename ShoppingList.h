@@ -23,16 +23,16 @@ public:
     ShoppingList(const std::string& name = "Default List");
 // operazioni sugli item
     void addItem(const Item& item);
-    void removeItem(const int& index);
+    void removeItem(size_t index);
     void printItems() const;
     void clear();
     //getters
-    Item getItem(int index);
+    const Item& getItem(size_t index) const;
     std::string getName() const;
     size_t getSize() const;
     size_t getPurchasedCount() const;
     //setters
-    void setItemPurchased(const int index, bool purchased);
+    void setItemPurchased(const size_t index, bool purchased);
     void setQuantity(const std::string& itemName, int quantity);
     // gestione Observer
     void addObserver(Observer* obs) override;

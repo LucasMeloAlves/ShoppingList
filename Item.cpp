@@ -7,10 +7,10 @@ Item::Item(const std::string& n, Category* c, int q, bool p)
     : name(n), category(c), quantity(q), purchased(p) {}
 
 // Getter
-std::string Item::getName() const { return name; }
+const std::string& Item::getName() const { return name; }
 int Item::getQuantity() const { return quantity; }
 bool Item::isPurchased() const { return purchased; }
-Category* Item::getCategory() const { return category; }
+const Category* Item::getCategory() const { return category; }
 
 // Setter
 void Item::setQuantity(int q)

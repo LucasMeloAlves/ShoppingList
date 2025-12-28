@@ -14,7 +14,7 @@ private:
 public:
     Category(const std::string& name);
     // Getter e Setter
-    std::string getName() const;
+    const std::string& getName() const;
     void setName(const std::string& name);
 };
 

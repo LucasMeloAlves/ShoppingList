@@ -7,18 +7,18 @@
 #include "User.h"
 #include <vector>
 
-class UserManager
-{
+class UserManager {
 private:
-    std::vector<User*> users;
+    // Deve essere un vector di shared_ptr per gestire più utenti
+    std::vector<std::shared_ptr<User>> users;
 public:
-    // gestione utenti
-    void addUser(User* user);
-    void removeUser(User* user);
+    // Nota: passiamo shared_ptr per coerenza con la gestione memoria
+    void addUser(const std::shared_ptr<User>& user);
+    void removeUser(const std::shared_ptr<User>& user);
     void printUsers() const;
-    // ricerca utente per id
-    User* getUserById(int id) const;
-};
 
+    // Restituiamo shared_ptr per sicurezza, o User* se preferisci
+    std::shared_ptr<User> getUserById(int id) const;
+};
 
 #endif //SHOPPINGLIST_USERMANAGER_H
