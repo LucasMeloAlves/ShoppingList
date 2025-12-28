@@ -32,7 +32,7 @@ public:
     size_t getSize() const;
     size_t getPurchasedCount() const;
     //setters
-    void setItemPurchased(Item item, bool purchased);
+    void setItemPurchased(const int index, bool purchased);
     void setQuantity(const std::string& itemName, int quantity);
     // gestione Observer
     void addObserver(Observer* obs) override;

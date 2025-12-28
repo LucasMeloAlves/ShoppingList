@@ -18,7 +18,13 @@ void Item::print() const {
               << " | Purchased: " << (purchased ? "Yes" : "No") << std::endl;
 }
 // Setter
-void Item::setQuantity(int q) { quantity = q; }
+void Item::setQuantity(int q)
+{// Controllo per quantità negativa
+    if (q < 0) {
+        throw std::invalid_argument("Quantity cannot be negative");
+    }
+    quantity = q;
+}
 void Item::setPurchased(bool p) { purchased = p; }
 void Item::setName(const std::string& n) { name = n; }
 void Item::setCategory(Category* c) { category = c; }

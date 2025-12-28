@@ -48,15 +48,15 @@ TEST_F(ShoppingListTest, RemoveItemDecreasesSize) {
 }
 // Test Imposta Acquistato
 TEST_F(ShoppingListTest, SetItemPurchasedUpdatesStatus) {
-    list->setItemPurchased(list->getItem(0), true);
+    list->setItemPurchased(0, true);
     EXPECT_TRUE(list->getItem(0).isPurchased());
-    list->setItemPurchased(list->getItem(0), false);
+    list->setItemPurchased(0, false);
     EXPECT_FALSE(list->getItem(0).isPurchased());
 }
 // Test Conta Acquistati
 TEST_F(ShoppingListTest, GetPurchasedCountReturnsCorrect) {
-    list->setItemPurchased(list->getItem(0), true);
-    list->setItemPurchased(list->getItem(1), true);
+    list->setItemPurchased(0, true);
+    list->setItemPurchased(1, true);
     EXPECT_EQ(list->getPurchasedCount(), 2);
 }
 // Test Imposta Quantità

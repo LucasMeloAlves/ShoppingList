@@ -38,10 +38,12 @@ void User::printShoppingLists() const
 }
 
 void User::addShoppingList(std::shared_ptr<ShoppingList> list) {
+    if (!list) return;
     shoppingLists.push_back(list);
 }
 
 void User::removeShoppingList(std::shared_ptr<ShoppingList> list) {
+    if (!list) return;
     shoppingLists.erase(
         std::remove(shoppingLists.begin(), shoppingLists.end(), list),
         shoppingLists.end()

@@ -18,10 +18,12 @@ void ShoppingList::addItem(const Item& item) {
 }
 
 void ShoppingList::removeItem(const int& index) {
-    if (index >= 0 && index < items.size()) {
+    if (index < 0 || index > items.size()) {
+        throw std::out_of_range("Index out of range");
+    }
         items.erase(items.begin() + index);
         notify();
-    }
+
 }
 
 void ShoppingList:: clear() {
@@ -29,8 +31,8 @@ void ShoppingList:: clear() {
     notify();
 }
 
-void ShoppingList::setItemPurchased(Item item, bool purchased){
-    item.setPurchased(purchased);
+void ShoppingList::setItemPurchased(const int index, bool purchased){
+    items[index].setPurchased(purchased);
     notify();
 }
 void ShoppingList::setQuantity(const std::string& itemName, int quantity)
@@ -45,7 +47,12 @@ void ShoppingList::setQuantity(const std::string& itemName, int quantity)
     }
 }
 
-Item ShoppingList::getItem(int index) {
+Item ShoppingList::getItem(int index)
+{
+    // controllo per indice fuori dai limiti
+    if (index < 0 || index >= items.size()) {
+        throw std::out_of_range("Index out of range");
+    }
     return items[index];
 }
 

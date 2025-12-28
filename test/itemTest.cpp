@@ -17,8 +17,8 @@ protected:
 };
 //Test per getter
 TEST_F(ItemTest, TestGetters) {
-    Item item("Mortadella", salumi, false);
-    EXPECT_EQ(item.getCategory()->getName(), "Mortadella");
+    Item item("Mortadella", salumi);
+    EXPECT_EQ(item.getCategory()->getName(), "Salumi");
     EXPECT_EQ(item.getQuantity(), 1);
     EXPECT_EQ(item.isPurchased(), false);
 }
@@ -37,7 +37,7 @@ TEST_F(ItemTest, TestSetters) {
 }
 //Test per setQuantity con valori negativi
 TEST_F(ItemTest, TestSetQuantityNegative) {
-    Item item("Mortadella", salumi, false);
+    Item item("Mortadella", salumi);
 
     // Verifica che il setter della quantità accetti valori positivi
     item.setQuantity(5);
